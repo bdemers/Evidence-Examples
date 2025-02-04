@@ -39,6 +39,7 @@ jobs:
         run: |
           URL=$(echo ${{ vars.ARTIFACTORY_URL }} | sed 's|^https://||')
           REPO_URL=${URL}'/example-project-docker-dev-virtual'
+          echo "docker REPO_URL: ${REPO_URL}"
           docker build --build-arg REPO_URL=${REPO_URL} -f Dockerfile . \
           --tag ${REPO_URL}/example-project-app:${{ github.run_number }} \
           --output=type=image --platform linux/amd64 --metadata-file=build-metadata --push
