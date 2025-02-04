@@ -142,6 +142,7 @@ jobs:
         id: run_policy
         run: |
           opa eval --input ./evidence-graph.json --data ./policy/policy.rego "data.policy.output" | jq '.result[0].expressions[0].value'  > policy.json
+          cat ./policy.json
           result=$(jq .approved ./policy.json)
           echo "RESULT=$result" >> $GITHUB_ENV
 
